@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Details</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { 
+            background: #f8fafc; 
+            margin: 0; 
+            padding: 20px 12px; 
+            color: #0f172a; 
+            min-height: 100vh;
+        }
+        
+        .back-btn { 
+            text-decoration: none; 
+            color: #4f46e5; 
+            font-weight: 700; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 20px; 
+            font-size: 14px;
+            background: #ffffff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover { transform: translateX(-4px); background: #eef2ff; }
+
+        .card { 
+            max-width: 650px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            border-radius: 28px; 
+            padding: 30px 24px; 
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05); 
+            border: 1px solid #f1f5f9;
+        }
+        
+        .header { display: flex; align-items: center; gap: 20px; }
+        .header img { 
+            width: 96px; 
+            height: 96px; 
+            border-radius: 24px; 
+            object-fit: cover; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+            border: 1px solid #f1f5f9;
+        }
+        .header-info h2 { margin: 0 0 6px 0; color: #0f172a; font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .badge-verified { background: #dcfce7; color: #15803d; font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 700; display: inline-flex; align-items: center; gap: 3px; }
+        .header-info p { margin: 2px 0; color: #64748b; font-size: 14px; font-weight: 500; }
+        
+        /* Stats Grid */
+        .app-stats { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin: 22px 0; 
+            background: #f8fafc; 
+            padding: 14px; 
+            border-radius: 18px; 
+            text-align: center; 
+            border: 1px solid #f1f5f9;
+        }
+        .stat-item { border-right: 1px solid #e2e8f0; }
+        .stat-item:last-child { border-right: none; }
+        .stat-item .val { font-size: 15px; font-weight: 800; color: #0f172a; }
+        .stat-item .lbl { font-size: 11px; color: #64748b; font-weight: 600; margin-top: 2px; }
+
+        /* Action Buttons Grid */
+        .action-buttons { display: flex; gap: 12px; margin: 22px 0; }
+        
+        .download-btn { 
+            flex: 2; 
+            text-align: center; 
+            background: linear-gradient(135deg, #10b981, #047857); 
+            color: white; 
+            padding: 16px 20px; 
+            border-radius: 16px; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 800; 
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.28);
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16, 185, 129, 0.38); }
+        
+        .share-btn { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            background: #ffffff; 
+            color: #4f46e5; 
+            border: 2px solid #e0e7ff; 
+            padding: 16px; 
+            border-radius: 16px; 
+            font-size: 16px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: all 0.25s ease;
+        }
+        .share-btn:hover { background: #eef2ff; border-color: #c7d2fe; transform: translateY(-3px); }
+        
+        /* Screenshots Section */
+        .screenshots-box { margin: 30px 0; }
+        .screenshots-box h3 { font-size: 17px; color: #0f172a; margin-bottom: 14px; font-weight: 800; letter-spacing: -0.3px; }
+        .screenshots-gallery { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: thin; }
+        .screenshots-gallery img { 
+            height: 240px; 
+            border-radius: 18px; 
+            object-fit: cover; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+            border: 1px solid #f1f5f9;
+        }
+
+        /* About Box */
+        .desc-box { 
+            background: #ffffff; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin-bottom: 30px; 
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .desc-box h3 { margin-top: 0; font-size: 17px; color: #0f172a; font-weight: 800; margin-bottom: 10px; }
+        .desc-box p { color: #475569; line-height: 1.65; margin: 0; font-size: 14px; white-space: pre-line; }
+
+        /* Review Section */
+        .review-section { border-top: 2px dashed #f1f5f9; padding-top: 28px; }
+        .review-section h3 { font-size: 18px; margin-top: 0; color: #0f172a; font-weight: 800; }
+        
+        .review-form input, .review-form textarea, .review-form select { 
+            width: 100%; 
+            padding: 13px; 
+            margin-bottom: 12px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 12px; 
+            outline: none; 
+            font-size: 14px;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+        .review-form input:focus, .review-form textarea:focus, .review-form select:focus {
+            border-color: #6366f1;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .review-form button { 
+            background: #0f172a; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .review-form button:hover { background: #1e293b; }
+        
+        .review-card { 
+            background: #f8fafc; 
+            padding: 16px; 
+            border-radius: 14px; 
+            margin-top: 12px; 
+            border: 1px solid #f1f5f9; 
+        }
+        .review-card b { color: #0f172a; font-size: 14px; }
+        .review-card p { margin: 6px 0 0 0; color: #475569; font-size: 14px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <a href="index.html" class="back-btn">← वापस जाएं</a>
+
+        <div id="detailsContainer">
+            <p style="text-align: center; color: #64748b; font-weight: 600;">विवरण लोड हो रहा है...</p>
+        </div>
+
+        <!-- Screenshots Gallery -->
+        <div class="screenshots-box" id="screenshotsWrapper" style="display: none;">
+            <h3>📸 ऐप स्क्रीनशॉट्स (Screenshots)</h3>
+            <div class="screenshots-gallery" id="screenshotsGallery"></div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="review-section">
+            <h3>⭐ रिव्यू और रेटिंग्स (Reviews)</h3>
+            <div class="review-form">
+                <input type="text" id="revName" placeholder="आपका नाम">
+                <select id="revRating">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                    <option value="2">⭐⭐ (2/5)</option>
+                    <option value="1">⭐ (1/5)</option>
+                </select>
+                <textarea id="revComment" rows="2" placeholder="अपनी राय लिखें..."></textarea>
+                <button id="submitReviewBtn">रिव्यू पोस्ट करें</button>
+            </div>
+            <div id="reviewsList" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0R02aKjwM9LmVtioonueDHHCdKB02bzI",
+            authDomain: "apkf-5a08a.firebaseapp.com",
+            projectId: "apkf-5a08a",
+            storageBucket: "apkf-5a08a.appspot.com",
+            messagingSenderId: "937381010908",
+            appId: "1:937381010908:web:c89638cc58fea6f2420319"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('id');
+
+        async function loadAppDetails() {
+            const container = document.getElementById('detailsContainer');
+            if (!appId) {
+                container.innerHTML = "<p style='text-align:center; color:red;'>अमान्य ऐप आईडी!</p>";
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "apps", appId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    container.innerHTML = `
+                        <div class="header">
+                            <img src="${data.iconUrl}" alt="${data.name}" onerror="this.src='https://via.placeholder.com/96'">
+                            <div class="header-info">
+                                <h2>${data.name} <span class="badge-verified">✓ Safe</span></h2>
+                                <p>वर्जन: v${data.version}</p>
+                                <p>डेवलपर: ${data.developer || 'Verified Developer'}</p>
+                            </div>
+                        </div>
+
+                        <div class="app-stats">
+                            <div class="stat-item">
+                                <div class="val">${data.downloads || '1K+'}</div>
+                                <div class="lbl">डाउनलोड्स</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="val">${data.sizeMB} MB</div>
+                                <div class="lbl">फ़ाइल साइज</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="val">100%</div>
+                                <div class="lbl">सुरक्षित</div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <a href="${data.apkUrl}" class="download-btn" target="_blank">📥 Download App</a>
+                            <button class="share-btn" id="shareBtn">🔗 Share</button>
+                        </div>
+
+                        <div class="desc-box">
+                            <h3>ऐप के बारे में (About App)</h3>
+                            <p>${data.description || 'कोई विवरण उपलब्ध नहीं है।'}</p>
+                        </div>
+                    `;
+
+                    // Share Functionality
+                    document.getElementById('shareBtn').addEventListener('click', () => {
+                        const shareData = {
+                            title: data.name,
+                            text: `${data.name} ऐप डाउनलोड करें (v${data.version}):`,
+                            url: window.location.href
+                        };
+
+                        if (navigator.share) {
+                            navigator.share(shareData).catch(() => {});
+                        } else {
+                            navigator.clipboard.writeText(window.location.href);
+                            alert('🔗 ऐप का लिंक कॉपी हो गया है!');
+                        }
+                    });
+
+                    // Multi-Screenshots rendering
+                    if (data.screenshots && data.screenshots.length > 0) {
+                        const gallery = document.getElementById('screenshotsGallery');
+                        gallery.innerHTML = "";
+                        data.screenshots.forEach(url => {
+                            if(url) gallery.innerHTML += `<img src="${url}" alt="Screenshot">`;
+                        });
+                        document.getElementById('screenshotsWrapper').style.display = "block";
+                    }
+
+                } else {
+                    container.innerHTML = "<p style='text-align:center;'>ऐप नहीं मिला!</p>";
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function loadReviews() {
+            const list = document.getElementById('reviewsList');
+            try {
+                const q = query(collection(db, "apps", appId, "reviews"), orderBy("createdAt", "desc"));
+                const snap = await getDocs(q);
+                list.innerHTML = "";
+
+                if(snap.empty) {
+                    list.innerHTML = "<p style='color:#94a3b8; font-size: 14px;'>अभी तक कोई रिव्यू नहीं आया है। पहला रिव्यू आप दें!</p>";
+                    return;
+                }
+
+                snap.forEach(d => {
+                    const r = d.data();
+                    list.innerHTML += `
+                        <div class="review-card">
+                            <b>${r.name}</b> ${"⭐".repeat(r.rating)}
+                            <p>${r.comment}</p>
+                        </div>
+                    `;
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        document.getElementById('submitReviewBtn').addEventListener('click', async () => {
+            const name = document.getElementById('revName').value.trim() || "User";
+            const rating = parseInt(document.getElementById('revRating').value);
+            const comment = document.getElementById('revComment').value.trim();
+
+            if(!comment) { alert("कृपया अपनी टिप्पणी लिखें!"); return; }
+
+            await addDoc(collection(db, "apps", appId, "reviews"), {
+                name, rating, comment, createdAt: serverTimestamp()
+            });
+
+            document.getElementById('revComment').value = "";
+            loadReviews();
+        });
+
+        loadAppDetails();
+        loadReviews();
+    </script>
+</body>
+</html>
